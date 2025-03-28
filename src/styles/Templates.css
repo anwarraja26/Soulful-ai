@@ -1,0 +1,19 @@
+.resume-template {
+    width: 90%;
+    margin: 30px auto;
+    padding: 30px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  h1, h2, h3, p, li {
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  [contentEditable="true"]:focus {
+    background: #f0f0f0;
+    outline: 2px solid #4caf50;
+  }
+  

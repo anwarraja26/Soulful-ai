@@ -6,7 +6,7 @@ import ResumeScore from "./pages/ResumeScore";
 import ResumeCarousel from "./components/ResumeCarousel";
 import Navbar from "./components/Header/Navbar";
 import Editor from "./components/Editor";  
-
+import SignPage from "./components/Signin"; 
 function App() {
   return (  
     <Router>  
@@ -26,7 +26,7 @@ function App() {
           {/* Other Pages */}
           <Route path="/pricing" element={<h1>Pricing</h1>} />
           <Route path="/organizations" element={<h1>For Organizations</h1>} />
-          <Route path="/signin" element={<h1>Sign In</h1>} />
+          <Route path="/signin" element={<SignPage/>}/>
           <Route path="/get-started" element={<h1>Get Started</h1>} />
 
           {/* Fallback 404 route */}

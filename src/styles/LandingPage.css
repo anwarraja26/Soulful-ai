@@ -59,6 +59,19 @@ body {
   border-color: var(--secondary-color);
 }
 
+.btn-highlight {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  transition: all 0.3s ease;
+  padding: 1vh 2vw;
+}
+
+.btn-highlight:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
 .companies {
   margin-top: 3vh;
   font-size: 1.5vw;
@@ -158,8 +171,6 @@ body {
   z-index: 1;
   pointer-events: none;
 }
-
-
 
 /* Slider*/
 /* Header Title */
@@ -276,7 +287,19 @@ body {
   color: #357abd;
 }
 
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  font-size: 14px;
+  color: var(--text-color-light);
+}
 
+/* Template section */
+.template-section {
+  margin-top: 5vh;
+}
 
 /* @media */
 @media screen and (min-width: 1200px) {
@@ -312,9 +335,12 @@ body {
   }
   
   .landing-page .rotating-image-container {
-    width: 35%;
-    top: 35%;
+    width: 45%;
+    height:38vh;
+    top: 15%;
+    left:55%;
   }
+  
   
   .carousel-container .slider_head {
     font-size: 3vw;

@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import "../../styles/Header.css";
 import logo from "../../assets/landing-page-images/logo.png";
+
 const Navbar = () => {
   const [dropdown, setDropdown] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
 
@@ -25,6 +27,7 @@ const Navbar = () => {
   // Close dropdown on navigation
   const handleNavigation = (path) => {
     setDropdown(null);  // Close dropdown
+    setMenuOpen(false); // Close mobile menu
     navigate(path);
   };
 
@@ -32,57 +35,65 @@ const Navbar = () => {
     setDropdown((prev) => (prev === menu ? null : menu));
   };
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <nav className="navbar" ref={dropdownRef}>
       <div className="navbar-left">
         <Link to="/" className="logo-link" onClick={() => setDropdown(null)}>
-        <img src={logo} alt="Logo" className="logo-img" />
+          <img src={logo} alt="Logo" className="logo-img" />
         </Link>
 
-        <div className="nav-links">
-          {/* Resume Dropdown */}
-          <div className="dropdown-wrapper">
-            <button className="nav-btn" onClick={() => toggleDropdown("resume")}>
-              Resume ▾
-            </button>
-            {dropdown === "resume" && (
-              <Dropdown 
-                items={["Templates", "Examples", "Tips"]} 
-                onItemClick={() => setDropdown(null)} 
-              />
-            )}
-          </div>
+        <button className="menu-toggle" onClick={toggleMenu}>
+          {menuOpen ? "✕" : "☰"}
+        </button>
+      </div>
 
-          {/* Cover Letter Dropdown */}
-          <div className="dropdown-wrapper">
-            <button className="nav-btn" onClick={() => toggleDropdown("coverLetter")}>
-              Cover Letter ▾
-            </button>
-            {dropdown === "coverLetter" && (
-              <Dropdown 
-                items={["Templates", "Samples", "Tips"]} 
-                onItemClick={() => setDropdown(null)} 
-              />
-            )}
-          </div>
-
-          {/* Blog Dropdown */}
-          <div className="dropdown-wrapper">
-            <button className="nav-btn" onClick={() => toggleDropdown("blog")}>
-              Blog ▾
-            </button>
-            {dropdown === "blog" && (
-              <Dropdown 
-                items={["Career Advice", "Success Stories", "News"]} 
-                onItemClick={() => setDropdown(null)} 
-              />
-            )}
-          </div>
-
-          {/* Navigation Links */}
-          <Link to="/pricing" onClick={() => handleNavigation("/pricing")}>Pricing</Link>
-          <Link to="/organizations" onClick={() => handleNavigation("/organizations")}>For Organizations</Link>
+      <div className={`nav-links ${menuOpen ? "active" : ""}`}>
+        {/* Resume Dropdown */}
+        <div className="dropdown-wrapper">
+          <button className="nav-btn" onClick={() => toggleDropdown("resume")}>
+            Resume ▾
+          </button>
+          {dropdown === "resume" && (
+            <Dropdown 
+              items={["Templates", "Examples", "Tips"]} 
+              onItemClick={() => setDropdown(null)} 
+            />
+          )}
         </div>
+
+        {/* Cover Letter Dropdown */}
+        <div className="dropdown-wrapper">
+          <button className="nav-btn" onClick={() => toggleDropdown("coverLetter")}>
+            Cover Letter ▾
+          </button>
+          {dropdown === "coverLetter" && (
+            <Dropdown 
+              items={["Templates", "Samples", "Tips"]} 
+              onItemClick={() => setDropdown(null)} 
+            />
+          )}
+        </div>
+
+        {/* Blog Dropdown */}
+        <div className="dropdown-wrapper">
+          <button className="nav-btn" onClick={() => toggleDropdown("blog")}>
+            Blog ▾
+          </button>
+          {dropdown === "blog" && (
+            <Dropdown 
+              items={["Career Advice", "Success Stories", "News"]} 
+              onItemClick={() => setDropdown(null)} 
+            />
+          )}
+        </div>
+
+        {/* Navigation Links */}
+        <Link to="/pricing" onClick={() => handleNavigation("/pricing")}>Pricing</Link>
+        <Link to="/organizations" onClick={() => handleNavigation("/organizations")}>For Organizations</Link>
       </div>
 
       <div className="auth-buttons">
